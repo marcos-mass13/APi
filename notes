@@ -1,0 +1,13 @@
+-- cria a tabela de users 
+CREATE TABLE IF NOT EXISTS dono (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nome TEXT,
+    email TEXT
+)
+-- deletar tabela
+DROP TABLE dono 
+-- seleciona user 
+SELECT * FROM dono
+
+-- isert user
+INSERT INTO dono (nome, email) VALUES ("Marcos", "marcos@email.com")
