@@ -31,6 +31,25 @@ def listar_usuarios():
     except Exception as e:
         return jsonify({"erro": str(e)})
 
+@app.route('/user', methods=['POST'])
+def listar_todos_usuarios():
+    try:
+        conn = conectar()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM user")
+        usuarios = cursor.fetchall()
+
+        # Converter para lista de dicionários
+        resultado = [dict(usuario) for usuario in usuarios]
+
+        conn.close()
+
+        return jsonify(resultado)
+
+    except Exception as e:
+        return jsonify({"erro": str(e)})
+
 # Rota para buscar um usuário por ID
 @app.route('/usuarios/<int:id>', methods=['GET'])
 def buscar_usuario(id):

@@ -5,7 +5,7 @@ import sqlite3
 conn = sqlite3.connect('database.db')
 cursor = conn.cursor()
 cursor.execute("""
-CREATE TABLE IF NOT EXISTS usuarios (
+CREATE TABLE IF NOT EXISTS user (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome TEXT,
     email TEXT
@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS usuarios (
 """)
 
 # Inserir dados de teste
-cursor.execute("INSERT INTO usuarios (nome, email) VALUES (?, ?)", ("Marcos", "marcos@email.com"))
-cursor.execute("INSERT INTO usuarios (nome, email) VALUES (?, ?)", ("Ana", "ana@email.com"))
+cursor.execute("INSERT INTO user (nome, email) VALUES (?, ?)", ("Marcos", "marcos@email.com"))
+cursor.execute("INSERT INTO user (nome, email) VALUES (?, ?)", ("Ana", "ana@email.com"))
 
 conn.commit()
 conn.close()
