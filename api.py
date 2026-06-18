@@ -1,5 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+# from flask_mysqldb import MySQL
+import pymysql
 import sqlite3
 
 app = Flask(__name__)
@@ -10,6 +12,18 @@ def conectar():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row  # Permite acessar colunas por nome
     return conn
+
+# teste inicio
+def new_conectar():
+    return pymysql.connect(
+        host='localhost',
+        user='root',
+        password='',       # Padrão do XAMPP é sem senha
+        database='nome_do_seu_banco', # Mude para o seu banco
+        port=3306,
+        cursorclass=pymysql.cursors.DictCursor # Faz os resultados virem como dicionário (chave: valor)
+    )
+# teste inicio
 
 # Rota para listar dados
 @app.route('/usuarios', methods=['GET'])

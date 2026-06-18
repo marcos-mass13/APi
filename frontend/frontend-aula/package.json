@@ -39,6 +39,7 @@
     "@vue/runtime-vapor": "beta",
     "@vue/server-renderer": "beta",
     "@vue/shared": "beta",
-    "@vue/compat": "beta"
+    "@vue/compat": "beta",
+    "vue": "^3.6.0-beta.11"
   }
 }
