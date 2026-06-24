@@ -3,7 +3,7 @@ from flask_cors import CORS
 # from flask_mysqldb import MySQL
 import pymysql
 import sqlite3
-
+#teste deploy
 app = Flask(__name__)
 CORS(app)
 
