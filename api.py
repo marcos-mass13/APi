@@ -64,13 +64,13 @@ def listar_usuarios():
     except Exception as e:
         return jsonify({"erro": str(e)})
 
-@app.route('/user', methods=['POST'])
+@app.route('/usuarios', methods=['POST'])
 def listar_todos_usuarios():
     try:
         conn = conectar()
         cursor = conn.cursor()
 
-        cursor.execute("SELECT * FROM user")
+        cursor.execute("SELECT * FROM usuarios")
         usuarios = cursor.fetchall()
 
         # Converter para lista de dicionários
@@ -102,6 +102,79 @@ def buscar_usuario(id):
 
     except Exception as e:
         return jsonify({"erro": str(e)})
+    
+
+    
+# Rota para buscar um usuário por ID
+@app.route('/publication', methods=['GET'])
+def listar_todos_publication():
+      try:
+        conn = conectar()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM publication")
+        usuarios = cursor.fetchall()
+
+        # Converter para lista de dicionários
+        resultado = [dict(usuario) for usuario in usuarios]
+
+        conn.close()
+
+        return jsonify(resultado)
+      
+      except Exception as e:
+        return jsonify({"erro": str(e)})
+      
+
+@app.route('/publication/<int:id>', methods=['GET'])
+def find_publication(id):
+      try:
+        conn = conectar()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM publication WHERE id = ?", (id,))
+        publication = cursor.fetchone()
+
+        conn.close()
+
+        return jsonify(dict(publication))
+      
+      except Exception as e:
+        return jsonify({"erro": str(e)})
+      
+
+@app.route('/publication', methods=['POST'])
+def criar_publication():
+      try:
+        conn = conectar()
+        cursor = conn.cursor()
+
+        dados = request.get_json()
+
+        title = dados.get('title')
+        content = dados.get('content') 
+        tipo = dados.get('type')
+        price = dados.get('price')
+        usuario_id = dados.get('user_id')
+        
+
+        cursor.execute("INSERT INTO publication (title,content,type,price,usuario_id) VALUES (?,?,?,?,?))", (title,content,tipo,price,usuario_id))
+
+
+        conn.close()
+
+        return jsonify({
+            "mensagem": "Cadastro realizado com sucesso",
+            "dados": dados
+        })
+      
+      except Exception as e:
+        return jsonify({"erro": str(e)})
+
+
+
+
+
     
 # CADASTRO
 @app.route('/cadastro', methods=['POST'])
