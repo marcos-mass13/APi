@@ -9,4 +9,4 @@ ENVIRONMENT=production
 DATABASE_URL=database.db
 
 # Chave secreta para criptografia de senhas/tokens JWT (Gere uma string aleatória)
-JWT_SECRET=
+JWT_SECRET=sua_chave_secreta_super_segura_aqui

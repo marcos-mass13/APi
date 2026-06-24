@@ -1,7 +1,7 @@
 # Logs
 logs
 *.log
-*.env copy
+*.env opy
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*

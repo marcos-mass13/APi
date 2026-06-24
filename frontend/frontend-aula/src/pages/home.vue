@@ -13,9 +13,9 @@
 <script setup>
 import { reactive, ref, onMounted } from 'vue'
 
-const BACKEND_URL = import.meta.env.VUE_APP_API_URL;;
-// console.log(BACKEND_URL); 
-console.log(BACKEND_URL); 
+const urlDaApi = import.meta.env.VITE_API_URL;
+
+console.log(urlDaApi + '/');
 
 onMounted(()=>receberDados())
 
@@ -27,7 +27,7 @@ async function receberDados() {
   try {
 
     const resposta = await fetch(
-      'https://project-je3vo.vercel.app'+'/',
+      urlDaApi+'/',
       {
         method: 'POST',
 
