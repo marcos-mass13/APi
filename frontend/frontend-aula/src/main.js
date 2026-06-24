@@ -5,7 +5,7 @@ import Bootstrap from 'bootstrap'
 
 /* Bootstrap */
 import 'bootstrap/dist/css/bootstrap.min.css' 
-// import 'bootstrap' 
+import 'bootstrap' 
 
 
 const app = createApp(App) 
