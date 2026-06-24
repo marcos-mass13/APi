@@ -33,3 +33,5 @@ Werkzeug==3.1.8
 wheel==0.47.0
 zope.event==6.2
 zope.interface==8.4
+fastapi
+uvicorn
