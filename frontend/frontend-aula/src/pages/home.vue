@@ -23,7 +23,7 @@ async function receberDados() {
   try {
 
     const resposta = await fetch(
-      'http://127.0.0.1:5000/user',
+      'http://127.0.0.1:5000/',
       {
         method: 'POST',
 

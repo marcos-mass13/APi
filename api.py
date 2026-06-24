@@ -25,6 +25,10 @@ def new_conectar():
     )
 # teste inicio
 
+@app.get("/")
+def home():
+    return {"status": "API ativa e banco preparado!"}
+
 # Rota para listar dados
 @app.route('/usuarios', methods=['GET'])
 def listar_usuarios():
