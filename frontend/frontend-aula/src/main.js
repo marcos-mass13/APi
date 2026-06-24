@@ -13,6 +13,6 @@ const app = createApp(App)
 
 app.use(router)
 
-app.use(Bootstrap) 
+app.use(bootstrap) 
 
 app.mount('#app')
