@@ -3,6 +3,10 @@ from flask_cors import CORS
 # from flask_mysqldb import MySQL
 import pymysql
 import sqlite3
+import subprocess
+
+# Executa o outro arquivo e espera ele terminar
+subprocess.run(["python", "arquivo.py"])
 #teste deploy
 app = Flask(__name__)
 CORS(app)

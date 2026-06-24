@@ -1,6 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "chmod +x build.sh && ./build.sh",
   "builds": [
     {
       "src": "api.py",
