@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect, url_for
 from flask_cors import CORS
 # from flask_mysqldb import MySQL
 import pymysql
@@ -27,9 +27,19 @@ def new_conectar():
 
 @app.route("/")
 def home():
-    return {"status": "API ativa e banco preparado!"}
+    # redirect(url_for('https://teste-eta-opal-50.vercel.app/'))
+    # return jsonify({
+    #         "mensagem": "API ativa e banco preparado!"
+    #     })
+    return redirect('https://teste-eta-opal-50.vercel.app/')
 
-# Rota para listar dados
+# Manipulador global para erro 404
+@app.errorhandler(404)
+def tratar_404(error):
+    return redirect('https://teste-eta-opal-50.vercel.app/')
+
+
+# Rota para listar dados 
 @app.route('/usuarios', methods=['GET'])
 def listar_usuarios():
     try:
