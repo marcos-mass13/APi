@@ -6,8 +6,6 @@ import * as bootstrap from 'bootstrap'
 /* Bootstrap */
 import 'bootstrap/dist/css/bootstrap.min.css' 
 
-
-
 const app = createApp(App) 
 
 

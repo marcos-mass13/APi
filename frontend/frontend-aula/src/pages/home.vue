@@ -14,7 +14,8 @@
 import { reactive, ref, onMounted } from 'vue'
 
 const BACKEND_URL = import.meta.env.VUE_APP_API_URL;;
-console.log(BACKEND_URL); // Retorna: https://sua-api.vercel.app
+// console.log(BACKEND_URL); 
+console.log(BACKEND_URL); 
 
 onMounted(()=>receberDados())
 
@@ -26,7 +27,7 @@ async function receberDados() {
   try {
 
     const resposta = await fetch(
-      VUE_APP_API_URL+'/',
+      'https://project-je3vo.vercel.app'+'/',
       {
         method: 'POST',
 
