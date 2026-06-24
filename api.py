@@ -7,6 +7,7 @@ import subprocess
 
 # Executa o outro arquivo e espera ele terminar
 subprocess.run(["python", "arquivo.py"])
+print("O outro arquivo terminou de rodar! Continuando este script...")
 #teste deploy
 app = Flask(__name__)
 CORS(app)
