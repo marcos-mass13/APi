@@ -1,8 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-//  Correto: Importa como um módulo nomeado
-import * as Bootstrap from 'bootstrap';
+import Bootstrap from 'bootstrap' 
 
 /* Bootstrap */
 import 'bootstrap/dist/css/bootstrap.min.css' 
