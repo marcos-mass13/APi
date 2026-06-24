@@ -28,10 +28,10 @@ def new_conectar():
 @app.route("/")
 def home():
     # redirect(url_for('https://teste-eta-opal-50.vercel.app/'))
-    # return jsonify({
-    #         "mensagem": "API ativa e banco preparado!"
-    #     })
-    return redirect('https://teste-eta-opal-50.vercel.app/')
+    return jsonify({
+            "mensagem": "API ativa e banco preparado!"
+        })
+    # return redirect('https://teste-eta-opal-50.vercel.app/')
 
 # Manipulador global para erro 404
 @app.errorhandler(404)
