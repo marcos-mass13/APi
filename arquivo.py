@@ -18,3 +18,5 @@ cursor.execute("INSERT INTO user (nome, email) VALUES (?, ?)", ("Ana", "ana@emai
 
 conn.commit()
 conn.close()
+
+##
