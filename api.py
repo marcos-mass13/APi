@@ -25,7 +25,7 @@ def new_conectar():
     )
 # teste inicio
 
-@app.get("/")
+@app.route("/")
 def home():
     return {"status": "API ativa e banco preparado!"}
 
