@@ -25,7 +25,7 @@ async function receberDados() {
   try {
 
     const resposta = await fetch(
-      urlDaApi+'/usuarios',
+      urlDaApi+'/',
       {
         method: 'GET',
         headers: {
