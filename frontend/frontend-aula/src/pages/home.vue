@@ -15,8 +15,6 @@ import { reactive, ref, onMounted } from 'vue'
 
 const urlDaApi = import.meta.env.VITE_API_URL;
 
-console.log(urlDaApi + '/');
-
 onMounted(()=>receberDados())
 
 const mensagem = ref('')
@@ -29,12 +27,10 @@ async function receberDados() {
     const resposta = await fetch(
       urlDaApi+'/',
       {
-        method: 'POST',
-
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
-
         body: JSON.stringify()
       }
     )
