@@ -3,11 +3,13 @@
   <p class="exemplo">
     Essa é uma pagina!
   </p>
-  <ul v-for="value in ddados">
+ <div v-if="dados.length>0">
+   <ul v-for="value in dados">
     <li>{{ value.id }}</li>
     <li>{{ value.nome }}</li>
     <li>{{ value.email }}</li>
   </ul>
+ </div>
 </template>
 
 <script setup>
@@ -18,7 +20,7 @@ const urlDaApi = import.meta.env.VITE_API_URL;
 onMounted(()=>receberDados())
 
 const mensagem = ref('')
-const ddados = ref('')
+const dados = ref('')
 
 async function receberDados() {
 
@@ -35,12 +37,12 @@ async function receberDados() {
       }
     )
 
-    const dados = await resposta.json()
+    const data = await resposta.json()
 
-    mensagem.value = dados.mensagem
+    mensagem.value = data.mensagem
 
-    console.log(dados)
-    ddados.value = dados;
+    console.log(data)
+    dados.value = data;
 
   } catch (erro) {
 
