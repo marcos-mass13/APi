@@ -55,12 +55,13 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, inject } from 'vue';
 import CardProd from '../MyComponents/cardProd.vue';
 import CardPost from '../MyComponents/cardPost.vue';
 import MyNavBar from '../MyComponents/MyNavBar.vue';
 
 const Page = "Home";
+const path = inject('path');
 
 // Estados Reativos
 const listagemNoticias = ref([]);
@@ -72,7 +73,7 @@ const buscarPublicacoes = async () => {
   try {
     loading.value = true;
     // IMPORTANTE: Fazendo o fetch na rota correta de listagem do seu backend
-    const resposta = await fetch(`http://127.0.0.1:5000/`);
+    const resposta = await fetch(path+`/`);
     
     if (resposta.ok) {
       const dados = await resposta.json();
@@ -110,7 +111,6 @@ const formatarData = (stringData) => {
   const data = new Date(stringData);
   return data.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short' });
 };
-
 // Dispara a busca assim que o componente é montado na tela
 onMounted(() => {
   buscarPublicacoes();

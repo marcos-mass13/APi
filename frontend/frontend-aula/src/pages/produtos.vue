@@ -105,10 +105,11 @@
 </template>
 
 <script setup lang='ts'>
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, inject } from 'vue';
   import Header from '../components/header.vue';
   import CardPost from '../MyComponents/cardPost.vue';
 
+  const path = inject('path');
   const mensagem = ref('');
   const data= ref({});
   const Title = "Produtos";
@@ -148,7 +149,7 @@ const salvarPublicacao = async () => {
 
 
     const resposta = await fetch(
-      'http://127.0.0.1:5000/produtos',
+      path+'/produtos',
       {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
@@ -176,7 +177,7 @@ const salvarPublicacao = async () => {
 
   const buscarPublicacoes = async () => {
     try {
-     const resposta = await fetch(`http://127.0.0.1:5000/produtos`);
+     const resposta = await fetch(path+`/produtos`);
 
     if (resposta.ok) {
       const dados = await resposta.json();

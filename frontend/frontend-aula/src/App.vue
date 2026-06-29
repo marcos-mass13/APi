@@ -1,11 +1,14 @@
 <script setup lang='ts'>
+  import { provide } from 'vue';
   import MyNavBar from './MyComponents/MyNavBar.vue'
+  const urlDaApi = import.meta.env.VITE_API_URL;
+  provide('path', urlDaApi);
 </script>
 
 <template>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <div class="min-h-screen bg-gray-50 flex font-sans text-gray-800">
-    <MyNavBar/>
+    <MyNavBar :path="urlDaApi"/>
     <div class="container">
       <div class="row">
         <div class="col">
