@@ -34,13 +34,6 @@
       <a href="#" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 p-3 rounded-xl font-medium transition">
         <span>
           <router-link to="/sobre">
-            ⚙️ Configurações
-            </router-link>
-        </span>
-      </a>
-      <a href="#" class="flex items-center space-x-3 text-gray-600 hover:bg-gray-50 p-3 rounded-xl font-medium transition">
-        <span>
-          <router-link to="/sobre">
             ⚙️ Sobre
             </router-link>
         </span>
