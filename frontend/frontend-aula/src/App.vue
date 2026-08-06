@@ -1,7 +1,7 @@
 <script setup lang='ts'>
   import { provide } from 'vue';
   import MyNavBar from './MyComponents/MyNavBar.vue'
-  const urlDaApi = import.meta.env.VITE_API_URL;
+  const urlDaApi = import.meta.env.VITE_API_URL_DEV;
   provide('path', urlDaApi);
 </script>
 
