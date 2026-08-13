@@ -25,6 +25,5 @@ export function useAlert() {
     open,
     close
   };
-  console.log("open");
   
 }
