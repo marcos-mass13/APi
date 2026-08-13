@@ -56,8 +56,7 @@ def home():
 @app.errorhandler(404)
 def tratar_404(error):
     return redirect('https://teste-eta-opal-50.vercel.app/')
-
-
+    
 # Rota para listar dados 
 @app.route('/usuarios', methods=['GET'])
 def listar_usuarios():
@@ -117,7 +116,34 @@ def buscar_usuario(id):
     except Exception as e:
         return jsonify({"erro": str(e)})
     
+#login
+@app.route('/usuarios/login', methods=['POST'])
+def login_usuarios():
+    try:
+        conn = conectar()
+        cursor = conn.cursor()
 
+        dados = request.get_json()
+        
+        email = dados.get('email') 
+        senha = dados.get('senha')
+
+        print(dados)
+
+        cursor.execute("SELECT id FROM usuarios WHERE usuarios.email = ? and usuarios.password = ?",(email,senha))
+        usuario = cursor.fetchone()
+        print(usuario)
+        if usuario is None:
+            raise PermissionError("Erro")
+        conn.commit()
+        conn.close()
+        return jsonify({
+            "mensagem": "Login localizado!",
+            "token": 'seu-token-de-autenticacao-jwt-aqui' 
+        })
+
+    except Exception as e:
+        return jsonify({"erro": str(e)})
     
 # Rota para buscar um usuário por ID
 @app.route('/noticias')

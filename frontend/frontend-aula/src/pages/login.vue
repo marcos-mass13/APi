@@ -4,11 +4,11 @@
     <form @submit.prevent="handleLogin">
       <div class="input-group">
         <label>E-mail</label>
-        <input type="email" v-model="email" required />
+        <input type="email" v-model="formulario.email" required />
       </div>
       <div class="input-group">
         <label>Senha</label>
-        <input type="password" v-model="password" required />
+        <input type="password" v-model="formulario.senha" required />
       </div>
       <button type="submit">Entrar</button>
       <p v-if="errorMessage" class="error">{{ errorMessage }}</p>
@@ -17,41 +17,69 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useAlert } from "@/composables/useAlert";
 
-const email = ref('');
-const password = ref('');
+const { open } = useAlert();
+const path = inject('path');
+const mensagem = ref('');
 const errorMessage = ref('');
 const router = useRouter();
 
-const handleLogin = async () => {
-  try {
-    // Substitua pela chamada da sua API real
-    const response = await fakeAuthApi(email.value, password.value);
-    
-    // Salva o token retornado no localStorage
-    localStorage.setItem('userToken', response.token);
-    
-    // Redireciona para a página protegida
-    router.push('/dashboard');
-  } catch (error) {
-    errorMessage.value = 'E-mail ou senha inválidos.';
-  }
-};
+const formulario = ref({
+  email:'',
+  senha:''
+})
 
-// Função simulada de API (substitua por fetch ou axios)
-const fakeAuthApi = (email, password) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (email === 'usuario@exemplo.com' && password === 'senha123') {
-        resolve({ token: 'seu-token-de-autenticacao-jwt-aqui' });
-      } else {
-        reject(new Error('Falha na autenticação'));
+const handleLogin = async ()=>{
+  try {
+
+     const payload = {
+      email: formulario.value.email,
+      senha: formulario.value.senha,
+    };
+
+    const resposta = await fetch(
+      path+'/usuarios/login',
+      {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(payload)
       }
-    }, 1000);
-  });
-};
+    )
+    const dados = await resposta.json();
+    if(dados.erro =="Erro"){
+      open("Login","Falha no acesso recusado!","danger")
+      return console.error("Acesso recusado");
+    }
+
+    if(resposta.ok){
+      mensagem.value = dados.mensagem;
+      open("Login","Acesso aprovado!","sucess")
+      console.info("Acesso aprovado");
+      localStorage.setItem('userToken', dados.token);
+      return router.push('/');
+    }
+    else{
+      console.error(
+        "Erro ao Buscar dados do servidor: ", resposta.status
+      );      
+      open("Atenção","Erro ao Buscar dados do servidor:","danger")
+    }
+    
+  } catch (error) {
+    console.error("Erro de Rede: ",error);
+    open("Atenção","Falha ao realizar login","danger")
+  }
+}
+
+// Botão para logoff ===>>>   <button type="button" @click="handleLogoff">Logoff</button> 
+const handleLogoff = ()=>{
+localStorage.removeItem('userToken');
+router.push('/login');
+}
+
 </script>
 
 <style scoped>
